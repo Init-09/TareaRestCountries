@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TareaRestCountries.MainPage">
+
+    <StackLayout>
+        <Frame BackgroundColor="#2196F3" Padding="8" CornerRadius="0">            
+        </Frame>
+        <Picker Title="Seleccionar" x:Name="pickercountry" SelectedIndexChanged="pickercountry_SelectedIndexChanged" Margin="0"/>
+
+        <ListView  x:Name="ltusuario"
+                   HasUnevenRows="true"
+                   SeparatorVisibility="None"
+                   ItemSelected="ltusuario_ItemSelected">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="10" RowSpacing="10" ColumnSpacing="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>                            
+
+                            <Image
+                                       Source="{Binding flags.png}"
+                                       HeightRequest="40"
+                                       HorizontalOptions="CenterAndExpand"
+                                       VerticalOptions="CenterAndExpand"
+                                       Aspect="AspectFill"
+                                       WidthRequest="45"
+                                       Grid.RowSpan="2"/>
+                            <Label Grid.Column="1"
+                                       Text="{Binding name}"
+                                       VerticalOptions="End"/>
+                            <Label Grid.Column="1"
+                                       Grid.Row="1"
+                                       VerticalOptions="Start"
+                                       Text="{Binding capital}"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>
