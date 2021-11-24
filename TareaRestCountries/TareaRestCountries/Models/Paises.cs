@@ -6,6 +6,7 @@ namespace TareaRestCountries.Models
 {
     public class Paises
     {
+
         public class Language
         {
             public string name { get; set; }
@@ -24,5 +25,7 @@ namespace TareaRestCountries.Models
         public string population { get; set; }
         public List<Currency> currencies { get; set; }
         public List<Language> languages { get; set; }
+
+        public IList<double> latlng { get; set; }
     }
 }

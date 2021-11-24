@@ -75,7 +75,8 @@ namespace TareaRestCountries
         private async void ltusuario_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             var paises = e.SelectedItem as Paises;
-            await Navigation.PushAsync(new DetailsPage(paises.flags.png, paises.name, paises.capital, paises.population, paises.currencies[0].name, paises.languages[0].name));
+            await Navigation.PushAsync(new DetailsPage(paises.flags.png, paises.name,
+                paises.capital, paises.population, paises.currencies[0].name, paises.languages[0].name, paises.latlng[0], paises.latlng[1]));
         }        
     }
 }

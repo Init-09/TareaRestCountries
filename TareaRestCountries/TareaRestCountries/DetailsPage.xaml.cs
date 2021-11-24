@@ -8,7 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using TareaRestCountries.Models;
 using Xamarin.Forms;
+using Xamarin.Forms.Maps;
 using Xamarin.Forms.Xaml;
+using static System.Net.Mime.MediaTypeNames;
+using static Xamarin.Forms.Internals.GIFBitmap;
 
 namespace TareaRestCountries
 {
@@ -22,9 +25,13 @@ namespace TareaRestCountries
         private List<Paises.Currency> currencies;
         private List<Paises.Language> languages;
         HttpClient cliente = new HttpClient();
+        private double latitud;
+        private double longitud;
+        private Position position;
 
-        public DetailsPage(string img, string name, string capital, string poblacion, string moneda, string lengua )
+        public DetailsPage(string img, string name, string capital, string poblacion, string moneda, string lengua, double lat, double lon)
         {
+            double latitud, longitud;
 
             InitializeComponent();
             NAME.Text = name;
@@ -36,6 +43,14 @@ namespace TareaRestCountries
             POBLA.Text = "Con una poblacion de: " + poblacion+" habitantes.";
             MONEDA.Text= "Moneda " + moneda;
             LENGUA.Text = "Lenguajes " + lengua;
+            latitud = Convert.ToDouble(lat);
+            longitud = Convert.ToDouble(lon);
+            double zoomLevel = 6;
+            double latlongDegrees = 360 / (Math.Pow(2, zoomLevel));
+            Position position = new Position(latitud, longitud);
+            map.MoveToRegion(new MapSpan(position, latlongDegrees, latlongDegrees));
+
+
         }
        
         public DetailsPage(string png, string name, string capital, string population, List<Paises.Currency> currencies, List<Paises.Language> languages)
